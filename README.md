@@ -1,10 +1,8 @@
-<div style="text-align: right; margin-bottom: 20px; font-family: sans-serif;">
-  <!-- 切换按钮：点击后跳转到对应的锚点 -->
-  <a href="#lang-en" style="padding: 8px 16px; background-color: #007bff; color: white; text-decoration: none; border-radius: 4px; font-size: 14px;">切换至 English</a>
-</div>
-
-<!-- 中文内容 -->
-<div id="lang-zh">
+<!-- 默认展开中文，收起英文 -->
+<details open>
+  <summary style="font-size: 16px; font-weight: bold; cursor: pointer; padding: 10px; background-color: #f6f8fa; border-radius: 6px; list-style: none;">
+    🇨🇳 中文说明 (点击切换至 English)
+  </summary>
 
 ### 🎮 手柄震动映射
 
@@ -124,12 +122,15 @@
 **手柄震动映射**
 让每一次震动都有反馈
 
-</div>
+</details>
 
-<br><br>
+<br>
 
-<!-- 英文内容 -->
-<div id="lang-en">
+<!-- 默认收起英文 -->
+<details>
+  <summary style="font-size: 16px; font-weight: bold; cursor: pointer; padding: 10px; background-color: #f6f8fa; border-radius: 6px; list-style: none;">
+    🇺🇸 English Instructions (Click to toggle)
+  </summary>
 
 ### 🎮 Rumble Shock
 
@@ -249,4 +250,4 @@ Use related devices legally and safely. Mind intensity and duration to avoid inj
 **Rumble Shock**
 Every rumble deserves feedback
 
-</div>
+</details>
