@@ -13,7 +13,7 @@
 
 <div id="-中文说明"></div>
 
-###  手柄震动映射
+### 🎮 手柄震动映射
 
 > 手柄一震动，郊狼就放电。
 
@@ -21,7 +21,7 @@
 
 ---
 
-###  插件简介
+### 📖 插件简介
 
 本插件会挂钩游戏进程中的 `XInputSetState`，实时获取左右马达震动强度，并按你配置的规则映射为电击强度与波形，通过 DGHub 发送给已连接的 DG-Lab 设备。
 
@@ -30,7 +30,7 @@
 
 ---
 
-###  快速开始
+### 🚀 快速开始
 
 #### 1. 下载与解压
 
@@ -61,7 +61,7 @@
 
 ---
 
-###  兼容说明
+### 🧩 兼容说明
 
 - 理论上支持所有通过 **XInput** 控制手柄震动的游戏
 - 实际兼容性因游戏实现而异，需自行验证
@@ -81,7 +81,7 @@
 
 ---
 
-### ️ 前置软件
+### 🛠️ 前置软件
 
 | 软件 | 说明 | 链接 |
 | :--- | :--- | :--- |
@@ -90,7 +90,7 @@
 
 ---
 
-###  主要功能
+### ✨ 主要功能
 
 - 实时监听 XInput 手柄震动
 - 支持 A / B / 双通道输出
@@ -101,7 +101,23 @@
 
 ---
 
-### ️ 注意事项
+### 📜 更新日志
+
+- **1.5.0 更新**
+  - 支持双通道切换
+  - 更加详细的配置项目
+  - 完善了 DGHub 运行日志
+- **1.2.5 更新**
+  - 修复了配置信息无法生效/无效的 Bug
+  - 增加了 DGHub 软件内的运行日志支持
+- **1.2.0 正式版发布**
+  - 支持获取 XInput 向手柄发送的震动信息来联动 DG-Lab 设备
+- **1.0 测试版**
+  - 可以与 DGHub 握手并控制 DG-Lab 设备
+
+---
+
+### ⚠️ 注意事项
 
 1. 请通过 DGHub 启动本插件，不要单独运行 exe
 2. 修改进程名后建议重启插件
@@ -110,7 +126,7 @@
 
 ---
 
-###  源码说明
+### 📜 源码说明
 
 本插件源代码位于 **源代码分支**。
 
@@ -120,7 +136,7 @@
 
 ---
 
-### ️ 免责声明
+### ⚖️ 免责声明
 
 本插件仅供学习与个人娱乐使用。
 
@@ -137,7 +153,7 @@
 
 <div id="-english-instructions"></div>
 
-###  Rumble Shock
+### 🎮 Rumble Shock
 
 > Controller rumbles → Coyote shocks.
 
@@ -145,7 +161,7 @@ This plugin hooks the game’s XInput vibration calls, maps rumble intensity in 
 
 ---
 
-###  Introduction
+### 📖 Introduction
 
 The plugin intercepts `XInputSetState` in the target game process, reads left/right motor intensity, converts it according to your settings, and sends trigger commands to DGHub.
 
@@ -154,7 +170,7 @@ Game controller rumble → Plugin detects → DGHub triggers → Device output.
 
 ---
 
-###  Quick Start
+### 🚀 Quick Start
 
 #### 1. Download & Extract
 
@@ -185,7 +201,7 @@ After extraction, locate **`main.zip`** (the plugin package). Open **DGHub** →
 
 ---
 
-###  Compatibility
+### 🧩 Compatibility
 
 - In theory, any game that drives controller rumble via **XInput** is supported.
 - Real-world compatibility varies by game implementation.
@@ -205,7 +221,7 @@ After extraction, locate **`main.zip`** (the plugin package). Open **DGHub** →
 
 ---
 
-### ️ Requirements
+### 🛠️ Requirements
 
 | Software | Description | Link |
 | :--- | :--- | :--- |
@@ -214,7 +230,7 @@ After extraction, locate **`main.zip`** (the plugin package). Open **DGHub** →
 
 ---
 
-###  Features
+### ✨ Features
 
 - Real-time XInput rumble monitoring
 - A / B / Both channel output
@@ -225,7 +241,23 @@ After extraction, locate **`main.zip`** (the plugin package). Open **DGHub** →
 
 ---
 
-### ️ Notes
+### 📜 Changelog
+
+- **v1.5.0 Update**
+  - Added dual-channel switching support
+  - More detailed configuration options
+  - Improved DGHub runtime logs
+- **v1.2.5 Update**
+  - Fixed a bug where configuration settings were not taking effect
+  - Added runtime log support within DGHub
+- **v1.2.0 Official Release**
+  - Added support for capturing XInput vibration signals to trigger DG-Lab devices
+- **v1.0 Beta**
+  - Initial handshake with DGHub and basic DG-Lab device control
+
+---
+
+### ⚠️ Notes
 
 1. Always start the plugin via DGHub; do not run the exe directly.
 2. Restart the plugin after changing the process name.
@@ -234,7 +266,7 @@ After extraction, locate **`main.zip`** (the plugin package). Open **DGHub** →
 
 ---
 
-###  Source Code
+### 📜 Source Code
 
 Source code is available on the **source branch**.
 
@@ -244,7 +276,7 @@ Please switch to the latest release branch to download the official package.
 
 ---
 
-### ️ Disclaimer
+### ⚖️ Disclaimer
 
 This plugin is for learning and personal entertainment only.
 
