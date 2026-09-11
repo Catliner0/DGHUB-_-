@@ -1,4 +1,4 @@
-# 手柄震动联动 / Rumble Shock
+# 手柄震动映射 / Rumble Shock
 
 **语言 / Language：** [中文](#-中文版本) | [English](#-english-version)
 
