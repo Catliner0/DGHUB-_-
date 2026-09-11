@@ -1,10 +1,10 @@
 {
   "id": "rumble_shock",
   "name": "手柄震动联动",
-  "version": "1.2.0",
+  "version": "1.5.0",
   "sdk": "1",
-  "author": "你的名字",
-  "description": "监听游戏手柄震动并自动映射为电击",
+  "author": "Catliner",
+  "description": "监听游戏手柄震动并映射为电击，支持单设备A/B通道",
   "entry": "rumble_shock.exe",
   "capabilities": {
     "startup_check": true
@@ -17,14 +17,57 @@
           "key": "process_name",
           "type": "text",
           "label": "游戏进程名",
-          "default": "OuterWilds.exe",
-          "description": "要监听的游戏进程名称"
+          "default": "OuterWilds.exe"
         },
         {
           "key": "preset",
           "type": "preset",
           "label": "波形预设",
           "default": "CS2-受伤"
+        },
+        {
+          "key": "channel",
+          "type": "channel",
+          "label": "输出通道",
+          "default": "both"
+        }
+      ]
+    },
+    {
+      "section": "强度与模式",
+      "fields": [
+        {
+          "key": "strength_mode",
+          "type": "select",
+          "label": "强度模式",
+          "default": "rollback",
+          "options": [
+            {"label": "结束后回落", "value": "rollback"},
+            {"label": "永久叠加", "value": "permanent"}
+          ]
+        },
+        {
+          "key": "action",
+          "type": "select",
+          "label": "触发动作",
+          "default": "both",
+          "options": [
+            {"label": "强度 + 波形", "value": "both"},
+            {"label": "只改强度", "value": "strength"},
+            {"label": "只播波形", "value": "waveform"}
+          ]
+        },
+        {
+          "key": "min_level",
+          "type": "percent",
+          "label": "最小电击强度",
+          "default": 20
+        },
+        {
+          "key": "max_level",
+          "type": "percent",
+          "label": "最大电击强度",
+          "default": 95
         }
       ]
     },
@@ -38,8 +81,7 @@
           "default": 800,
           "min": 0,
           "max": 65535,
-          "step": 50,
-          "description": "低于此值的震动将被忽略"
+          "step": 50
         },
         {
           "key": "strength_scale",
@@ -48,8 +90,13 @@
           "default": 75,
           "min": 10,
           "max": 200,
-          "step": 5,
-          "description": "震动强度映射到电击强度的比例"
+          "step": 5
+        },
+        {
+          "key": "use_max_motor",
+          "type": "bool",
+          "label": "取左右马达最大值",
+          "default": true
         },
         {
           "key": "cooldown",
@@ -63,7 +110,7 @@
         {
           "key": "duration",
           "type": "duration",
-          "label": "电击持续时间（秒）",
+          "label": "持续时间（秒）",
           "default": 0.65,
           "min": 0.1,
           "max": 5.0,
