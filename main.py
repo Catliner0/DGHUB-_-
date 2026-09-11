@@ -1,7 +1,6 @@
 import asyncio
 import json
 import os
-import sys
 import time
 import threading
 import frida
@@ -25,7 +24,37 @@ device_connected = True
 frida_session = None
 
 
+async def send_log(level: str, message: str):
+    """发送日志到 DGHub 运行日志面板"""
+    if not ws:
+        return
+    try:
+        await ws.send(json.dumps({
+            "op": "log",
+            "level": level,
+            "message": message
+        }))
+    except Exception:
+        pass
+
+
+async def report_status(text: str):
+    """上报状态到 DGHub"""
+    if not ws:
+        return
+    try:
+        await ws.send(json.dumps({
+            "op": "status",
+            "fields": {
+                "display_status": text
+            }
+        }))
+    except Exception:
+        pass
+
+
 async def trigger_shock(level: int):
+    """发送电击命令"""
     if not ws or not device_connected:
         return
     try:
@@ -39,23 +68,11 @@ async def trigger_shock(level: int):
             "channel": "both",
             "label": f"手柄震动 {level}%"
         }))
+        await send_log("info", f"触发电击 +{level}%  (预设: {config['preset']})")
         print(f"[{time.strftime('%H:%M:%S')}] 触发电击 +{level}%")
     except Exception as e:
+        await send_log("error", f"发送电击失败: {e}")
         print(f"发送失败: {e}")
-
-
-async def report_status(text: str):
-    if not ws:
-        return
-    try:
-        await ws.send(json.dumps({
-            "op": "status",
-            "fields": {
-                "display_status": text
-            }
-        }))
-    except Exception:
-        pass
 
 
 def on_message(message, data):
@@ -80,6 +97,12 @@ def on_message(message, data):
     level = min(95, max(20, int(intensity / 65535 * config["strength_scale"])))
 
     if loop and loop.is_running():
+        # 记录检测到的震动
+        asyncio.run_coroutine_threadsafe(
+            send_log("info", f"检测到震动 left={left} right={right} -> 强度{level}%"),
+            loop
+        )
+        # 触发电击
         asyncio.run_coroutine_threadsafe(trigger_shock(level), loop)
 
 
@@ -94,6 +117,9 @@ def start_frida():
     except Exception as e:
         print(f"Frida 附加失败: {e}")
         if loop and loop.is_running():
+            asyncio.run_coroutine_threadsafe(
+                send_log("error", f"Frida 附加失败: {e}"), loop
+            )
             asyncio.run_coroutine_threadsafe(
                 report_status(f"附加失败: {process_name}"), loop
             )
@@ -152,9 +178,13 @@ def start_frida():
 
     if loop and loop.is_running():
         asyncio.run_coroutine_threadsafe(
+            send_log("info", f"Frida 已成功附加到 {process_name}"), loop
+        )
+        asyncio.run_coroutine_threadsafe(
             report_status(f"已监听 {process_name}"), loop
         )
 
+    # 保持线程存活
     while True:
         time.sleep(1)
 
@@ -185,7 +215,7 @@ async def main():
             "manifest": {
                 "id": "rumble_shock",
                 "name": "手柄震动联动",
-                "version": "1.2.0",
+                "version": "1.2.5",
                 "sdk": "1"
             }
         }))
@@ -196,11 +226,10 @@ async def main():
             return
 
         print("插件已连接 DGHub")
-        await report_status("已连接，等待游戏...")
+        await report_status("已连接，等待配置...")
+        await send_log("info", "插件已连接 DGHub，等待配置...")
 
-        # 启动 Frida
-        t = threading.Thread(target=start_frida, daemon=True)
-        t.start()
+        frida_started = False
 
         # 消息循环
         async for msg in ws:
@@ -213,24 +242,40 @@ async def main():
 
             if op == "stop":
                 print("收到停止指令，退出")
+                await send_log("info", "收到停止指令，插件退出")
                 break
 
             elif op == "config":
+                # 收到全量配置
                 new_cfg = data.get("data", {})
                 config.update(new_cfg)
                 print("收到全量配置:", config)
+                await send_log("info", f"收到全量配置: {config}")
+
+                # 第一次收到配置后再启动 Frida
+                if not frida_started:
+                    frida_started = True
+                    t = threading.Thread(target=start_frida, daemon=True)
+                    t.start()
 
             elif op == "config_changed":
                 key = data.get("key")
                 value = data.get("value")
                 if key in config:
+                    old_value = config[key]
                     config[key] = value
-                    print(f"配置更新: {key} = {value}")
+                    print(f"配置更新: {key} = {value} (原值: {old_value})")
+                    await send_log("info", f"配置更新: {key} = {value}")
+
+                    if key == "process_name":
+                        await send_log("warning", "进程名已修改，建议重启插件使新进程生效")
+                        await report_status("进程名已改，建议重启插件")
 
             elif op == "device_info":
                 device_connected = bool(data.get("connected", False))
                 status = "设备已连接" if device_connected else "设备未连接"
                 print(status)
+                await send_log("info", status)
                 await report_status(status)
 
             elif op == "ping":
