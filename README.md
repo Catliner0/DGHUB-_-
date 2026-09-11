@@ -1,10 +1,19 @@
-<!-- 默认展开中文，收起英文 -->
-<details open>
-  <summary style="font-size: 16px; font-weight: bold; cursor: pointer; padding: 10px; background-color: #f6f8fa; border-radius: 6px; list-style: none;">
-    🇨🇳 中文说明 (点击切换至 English)
-  </summary>
+<div align="right">
+  <a href="#-中文说明">
+    <img src="https://img.shields.io/badge/语言-中文-blue" alt="中文">
+  </a>
+  <a href="#-english-instructions">
+    <img src="https://img.shields.io/badge/语言-English-lightgrey" alt="English">
+  </a>
+</div>
 
-### 🎮 手柄震动映射
+<br>
+
+---
+
+<div id="-中文说明"></div>
+
+###  手柄震动映射
 
 > 手柄一震动，郊狼就放电。
 
@@ -12,7 +21,7 @@
 
 ---
 
-### 📖 插件简介
+###  插件简介
 
 本插件会挂钩游戏进程中的 `XInputSetState`，实时获取左右马达震动强度，并按你配置的规则映射为电击强度与波形，通过 DGHub 发送给已连接的 DG-Lab 设备。
 
@@ -21,7 +30,7 @@
 
 ---
 
-### 🚀 快速开始
+###  快速开始
 
 #### 1. 下载与解压
 
@@ -52,7 +61,7 @@
 
 ---
 
-### 🧩 兼容说明
+###  兼容说明
 
 - 理论上支持所有通过 **XInput** 控制手柄震动的游戏
 - 实际兼容性因游戏实现而异，需自行验证
@@ -72,7 +81,7 @@
 
 ---
 
-### 🛠️ 前置软件
+### ️ 前置软件
 
 | 软件 | 说明 | 链接 |
 | :--- | :--- | :--- |
@@ -81,7 +90,7 @@
 
 ---
 
-### ✨ 主要功能
+###  主要功能
 
 - 实时监听 XInput 手柄震动
 - 支持 A / B / 双通道输出
@@ -92,7 +101,7 @@
 
 ---
 
-### ⚠️ 注意事项
+### ️ 注意事项
 
 1. 请通过 DGHub 启动本插件，不要单独运行 exe
 2. 修改进程名后建议重启插件
@@ -101,7 +110,7 @@
 
 ---
 
-### 📜 源码说明
+###  源码说明
 
 本插件源代码位于 **源代码分支**。
 
@@ -111,7 +120,7 @@
 
 ---
 
-### ⚖️ 免责声明
+### ️ 免责声明
 
 本插件仅供学习与个人娱乐使用。
 
@@ -122,17 +131,13 @@
 **手柄震动映射**
 让每一次震动都有反馈
 
-</details>
+<br><br><br>
 
-<br>
+---
 
-<!-- 默认收起英文 -->
-<details>
-  <summary style="font-size: 16px; font-weight: bold; cursor: pointer; padding: 10px; background-color: #f6f8fa; border-radius: 6px; list-style: none;">
-    🇺🇸 English Instructions (Click to toggle)
-  </summary>
+<div id="-english-instructions"></div>
 
-### 🎮 Rumble Shock
+###  Rumble Shock
 
 > Controller rumbles → Coyote shocks.
 
@@ -140,7 +145,7 @@ This plugin hooks the game’s XInput vibration calls, maps rumble intensity in 
 
 ---
 
-### 📖 Introduction
+###  Introduction
 
 The plugin intercepts `XInputSetState` in the target game process, reads left/right motor intensity, converts it according to your settings, and sends trigger commands to DGHub.
 
@@ -149,7 +154,7 @@ Game controller rumble → Plugin detects → DGHub triggers → Device output.
 
 ---
 
-### 🚀 Quick Start
+###  Quick Start
 
 #### 1. Download & Extract
 
@@ -180,7 +185,7 @@ After extraction, locate **`main.zip`** (the plugin package). Open **DGHub** →
 
 ---
 
-### 🧩 Compatibility
+###  Compatibility
 
 - In theory, any game that drives controller rumble via **XInput** is supported.
 - Real-world compatibility varies by game implementation.
@@ -200,7 +205,7 @@ After extraction, locate **`main.zip`** (the plugin package). Open **DGHub** →
 
 ---
 
-### 🛠️ Requirements
+### ️ Requirements
 
 | Software | Description | Link |
 | :--- | :--- | :--- |
@@ -209,7 +214,7 @@ After extraction, locate **`main.zip`** (the plugin package). Open **DGHub** →
 
 ---
 
-### ✨ Features
+###  Features
 
 - Real-time XInput rumble monitoring
 - A / B / Both channel output
@@ -220,7 +225,7 @@ After extraction, locate **`main.zip`** (the plugin package). Open **DGHub** →
 
 ---
 
-### ⚠️ Notes
+### ️ Notes
 
 1. Always start the plugin via DGHub; do not run the exe directly.
 2. Restart the plugin after changing the process name.
@@ -229,7 +234,7 @@ After extraction, locate **`main.zip`** (the plugin package). Open **DGHub** →
 
 ---
 
-### 📜 Source Code
+###  Source Code
 
 Source code is available on the **source branch**.
 
@@ -239,7 +244,7 @@ Please switch to the latest release branch to download the official package.
 
 ---
 
-### ⚖️ Disclaimer
+### ️ Disclaimer
 
 This plugin is for learning and personal entertainment only.
 
@@ -249,5 +254,3 @@ Use related devices legally and safely. Mind intensity and duration to avoid inj
 
 **Rumble Shock**
 Every rumble deserves feedback
-
-</details>
