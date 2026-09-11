@@ -3,7 +3,7 @@
   "name": "手柄震动联动",
   "version": "1.2.0",
   "sdk": "1",
-  "author": "你的名字",
+  "author": "Catliner",
   "description": "监听游戏手柄震动并自动映射为电击",
   "entry": "rumble_shock.exe",
   "capabilities": {
