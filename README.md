@@ -12,5 +12,5 @@ DGLAB:https://dungeon-lab.cn/
 PS:本插件源代码放置于源代码分支；使用插件无需下载  
 下面是已经验证的兼容本插件的steam游戏：  
 （如果下面游戏使用插件遇到问题，请检测进程是否配置正确且使用支持Xinput手柄并禁用steam输入）  
-1.outerwilds 星际拓荒  
-2.死亡搁浅1导剪版 进程：ds.exe   
+1.星际拓荒  ---进程：OuterWilds.exe  
+2.死亡搁浅1导剪版 ---进程：ds.exe     
