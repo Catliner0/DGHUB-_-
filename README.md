@@ -1,11 +1,10 @@
-<div style="text-align: right; margin-bottom: 20px;">
-  <button id="lang-toggle-btn" style="padding: 8px 16px; cursor: pointer; background-color: #007bff; color: white; border: none; border-radius: 4px; font-size: 14px;">
-    切换至 English
-  </button>
+<div style="text-align: right; margin-bottom: 20px; font-family: sans-serif;">
+  <!-- 切换按钮：点击后跳转到对应的锚点 -->
+  <a href="#lang-en" style="padding: 8px 16px; background-color: #007bff; color: white; text-decoration: none; border-radius: 4px; font-size: 14px;">切换至 English</a>
 </div>
 
 <!-- 中文内容 -->
-<div id="content-zh">
+<div id="lang-zh">
 
 ### 🎮 手柄震动映射
 
@@ -127,8 +126,10 @@
 
 </div>
 
+<br><br>
+
 <!-- 英文内容 -->
-<div id="content-en" style="display: none;">
+<div id="lang-en">
 
 ### 🎮 Rumble Shock
 
@@ -249,27 +250,3 @@ Use related devices legally and safely. Mind intensity and duration to avoid inj
 Every rumble deserves feedback
 
 </div>
-
-<script>
-  (function() {
-    const btn = document.getElementById('lang-toggle-btn');
-    const zhDiv = document.getElementById('content-zh');
-    const enDiv = document.getElementById('content-en');
-    
-    // 防止重复绑定
-    if (btn.dataset.bound) return;
-    btn.dataset.bound = 'true';
-
-    btn.addEventListener('click', function() {
-      if (zhDiv.style.display === 'none') {
-        zhDiv.style.display = 'block';
-        enDiv.style.display = 'none';
-        btn.textContent = '切换至 English';
-      } else {
-        zhDiv.style.display = 'none';
-        enDiv.style.display = 'block';
-        btn.textContent = '切换至 中文';
-      }
-    });
-  })();
-</script>
